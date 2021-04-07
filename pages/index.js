@@ -1,65 +1,95 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Link from "next/link";
+import NavBar from "../components/NavBar/NavBar";
+import Footer from "../components/Footer/Footer";
+
+const useStyles = makeStyles({
+  container: {
+    height: "100%",
+    background:
+      "linear-gradient(180deg, #E3D9FC 0%, rgba(227, 217, 252, 0) 92.11%)",
+  },
+  main: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: "15px 0px 0px 108px",
+  },
+  heroImg: {
+    maxHeight: 650,
+    height: "100%",
+  },
+  header: {
+    fontSize: 65,
+    lineHeight: "78px",
+    fontWeight: 900,
+    color: "#0F2042",
+    width: 696,
+  },
+  paragraph: {
+    fontSize: 18,
+    lineHeight: "25px",
+    fontWeight: 400,
+    color: "#515E76",
+    maxWidth: 696,
+    margin: "24px 0px 32px 0px",
+  },
+  buttonContainer: {
+    display: "flex",
+    alignItems: "center",
+  },
+  cta: {
+    fontSize: 18,
+    lineHeight: "21px",
+    fontWeight: 700,
+    color: "#FFFFFF",
+    padding: "20px 64px",
+    background: "linear-gradient(228.31deg, #7540EE 21.3%, #0070FF 94.12%)",
+    borderRadius: 40,
+    boxShadow: "0px 4px 6px rgba(67, 90, 111, 0.301)",
+    marginRight: 40,
+  },
+  link: {
+    fontSize: 18,
+    lineHeight: "21px",
+    fontWeight: 700,
+    color: "#7540EE",
+  },
+});
 
 export default function Home() {
+  const classes = useStyles();
   return (
-    <div className={styles.container}>
+    <div className={classes.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Surify</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <NavBar />
+      <main className={classes.main}>
+        <div>
+          <h1 className={classes.header}>Start selling insurance instantly.</h1>
+          <p className={classes.paragraph}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+            porttitor elit vel lacinia aliquam. Donec commodo, tellus eu
+            faucibus tempus, sapien lectus dapibus turpis
+          </p>
+          <div className={classes.buttonContainer}>
+            <Link href="">
+              <a className={classes.cta}>Get Started</a>
+            </Link>
+            <Link href="">
+              <a className={classes.link}>Contact Us</a>
+            </Link>
+          </div>
+        </div>
+        <div>
+          <img src="/landing.png" className={classes.heroImg} />
         </div>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+      <Footer />
     </div>
-  )
+  );
 }
