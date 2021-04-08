@@ -372,15 +372,20 @@ function OnboardingSteps({ step, toggleModal, setStep }) {
   //   backend_value: stateValue
   // }
 
-  // async function sendApiCall() {
-  //   try {
-  //      await send the axios.put(endpoint, data)
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+async function sendApiCall() {
+  try {
+      await axios.post('https://tdwbtw.herokuapp.com/api/brokers/create/', {'broker_name': fullName}).then(function(response) {
+        console.log("sendApiCall >  successs ", response)
 
-  function getStepComponent(currentStep) {
+        const brokerSheetId = window.localStorage.setItem('brokerSheetId', response.data.broker_sheet_id)
+      })
+  } catch (error) {
+    console.log('sendApiCall > error ', error)
+  }
+}
+
+
+function getStepComponent(currentStep) {
     switch (currentStep) {
       case 1:
         return (
@@ -444,7 +449,7 @@ function OnboardingSteps({ step, toggleModal, setStep }) {
   function handleSubmit() {
     toggleModal();
     setTimeout(setStep(1), 300);
-    // api call
+    sendApiCall()
   }
 
   return <div>{getStepComponent(step)}</div>;
