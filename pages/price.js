@@ -21,7 +21,7 @@ function PricePage() {
   const [price, setPrice] = useState(0);
 
   async function getPrice() {
-    const brokerSheetId = window.localStorage.get('brokerSheetId')
+    const brokerSheetId = window.localStorage.getItem('brokerSheetId')
     
     const data = {
       'broker_sheet_id': brokerSheetId,
