@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
 import Button from "../Button/Button";
 import OnboardingSteps from "../OnboardingSteps/OnbordingSteps";
 
@@ -38,6 +39,11 @@ const useStyles = makeStyles({
     flex: 1,
     padding: 40,
   },
+  center: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
 });
 
 function OnboardingModalContainer({ toggleModal }) {
@@ -47,12 +53,34 @@ function OnboardingModalContainer({ toggleModal }) {
   function handleContinue() {
     setStep((prevStep) => prevStep + 1);
   }
+
+  function getButtonText(step) {
+    switch (step) {
+      case 5:
+        return "Next";
+      case 6:
+        return "Finalize";
+      case 7:
+        return "Close";
+      default:
+        return "Continue";
+    }
+  }
   return (
     <div className={classes.overlay}>
       <div className={classes.container}>
-        <div className={classes.content}>
-          <OnboardingSteps step={step} toggleModal={toggleModal} />
-          <Button text="Continue" onClick={handleContinue} />
+        <div
+          className={clsx(
+            classes.content,
+            step === 3 || step === 7 ? classes.center : {}
+          )}
+        >
+          <OnboardingSteps
+            step={step}
+            toggleModal={toggleModal}
+            setStep={setStep}
+          />
+          <Button text={getButtonText(step)} onClick={handleContinue} />
         </div>
         <div className={classes.logoContainer} />
       </div>

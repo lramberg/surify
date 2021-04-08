@@ -77,7 +77,7 @@ const useStyles = makeStyles({
   },
 });
 
-function OnboardingSteps({ step, toggleModal }) {
+function OnboardingSteps({ step, toggleModal, setStep }) {
   const classes = useStyles();
 
   function getStepComponent(currentStep) {
@@ -97,8 +97,13 @@ function OnboardingSteps({ step, toggleModal }) {
       case 7:
         return <Step7 />;
       default:
-        return toggleModal();
+        return handleSubmit();
     }
+  }
+
+  function handleSubmit() {
+    toggleModal();
+    setTimeout(setStep(1), 300);
   }
 
   function Step1() {
