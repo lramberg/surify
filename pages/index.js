@@ -1,9 +1,11 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { makeStyles } from "@material-ui/core/styles";
+import { useState } from "react";
 import Link from "next/link";
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
+import OnboardingModalContainer from "../components/OnboardingModalContainer/OnboardingModalContainer";
 
 const useStyles = makeStyles({
   container: {
@@ -50,6 +52,7 @@ const useStyles = makeStyles({
     borderRadius: 40,
     boxShadow: "0px 4px 6px rgba(67, 90, 111, 0.301)",
     marginRight: 40,
+    cursor: "pointer",
   },
   link: {
     fontSize: 18,
@@ -61,13 +64,19 @@ const useStyles = makeStyles({
 
 export default function Home() {
   const classes = useStyles();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function toggleModal() {
+    setIsModalOpen(!isModalOpen);
+  }
   return (
     <div className={classes.container}>
       <Head>
         <title>Surify</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
+      {isModalOpen && <OnboardingModalContainer toggleModal={toggleModal} />}
+      <NavBar toggleModal={toggleModal} />
       <main className={classes.main}>
         <div>
           <h1 className={classes.header}>Start selling insurance instantly.</h1>
@@ -77,9 +86,9 @@ export default function Home() {
             faucibus tempus, sapien lectus dapibus turpis
           </p>
           <div className={classes.buttonContainer}>
-            <Link href="">
-              <a className={classes.cta}>Get Started</a>
-            </Link>
+            <div onClick={() => toggleModal()} className={classes.cta}>
+              Get Started
+            </div>
             <Link href="">
               <a className={classes.link}>Contact Us</a>
             </Link>

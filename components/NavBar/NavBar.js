@@ -28,10 +28,12 @@ const useStyles = makeStyles({
     fontWeight: 700,
     padding: "11px 24px",
     borderRadius: "40px",
+    display: "inline-block",
+    cursor: "pointer",
   },
 });
 
-function NavBar() {
+function NavBar({ toggleModal }) {
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -54,9 +56,9 @@ function NavBar() {
         <Link href="">
           <a className={classes.link}>Contact</a>
         </Link>
-        <Link href="">
-          <a className={classes.cta}>Get Started</a>
-        </Link>
+        <div onClick={() => toggleModal()} className={classes.cta}>
+          Get Started
+        </div>
       </div>
     </div>
   );
