@@ -77,8 +77,29 @@ const useStyles = makeStyles({
   },
 });
 
-function OnboardingSteps() {
+function OnboardingSteps({ step, toggleModal }) {
   const classes = useStyles();
+
+  function getStepComponent(currentStep) {
+    switch (currentStep) {
+      case 1:
+        return <Step1 />;
+      case 2:
+        return <Step2 />;
+      case 3:
+        return <Step3 />;
+      case 4:
+        return <Step4 />;
+      case 5:
+        return <Step5 />;
+      case 6:
+        return <Step6 />;
+      case 7:
+        return <Step7 />;
+      default:
+        return toggleModal();
+    }
+  }
 
   function Step1() {
     return (
@@ -256,11 +277,7 @@ function OnboardingSteps() {
     );
   }
 
-  return (
-    <div>
-      <Step7 />
-    </div>
-  );
+  return <div>{getStepComponent(step)}</div>;
 }
 
 export default OnboardingSteps;

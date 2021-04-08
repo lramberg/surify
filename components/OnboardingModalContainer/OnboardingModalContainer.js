@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "../Button/Button";
 import OnboardingSteps from "../OnboardingSteps/OnbordingSteps";
@@ -39,17 +40,18 @@ const useStyles = makeStyles({
   },
 });
 
-function handleContinue() {
-  console.log("continue");
-}
-
 function OnboardingModalContainer({ toggleModal }) {
   const classes = useStyles();
+  const [step, setStep] = useState(1);
+
+  function handleContinue() {
+    setStep((prevStep) => prevStep + 1);
+  }
   return (
     <div className={classes.overlay}>
       <div className={classes.container}>
         <div className={classes.content}>
-          <OnboardingSteps />
+          <OnboardingSteps step={step} toggleModal={toggleModal} />
           <Button text="Continue" onClick={handleContinue} />
         </div>
         <div className={classes.logoContainer} />
