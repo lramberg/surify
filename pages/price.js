@@ -21,8 +21,10 @@ function PricePage() {
   const [price, setPrice] = useState(0);
 
   async function getPrice() {
+    const brokerSheetId = window.localStorage.get('brokerSheetId')
+    
     const data = {
-      'broker_sheet_id': '1ND9yV2xIiD07g6zKwm2aW___MRt5pwA10JB6Mv2NSWY',
+      'broker_sheet_id': brokerSheetId,
       'traveler': {
         "is_high_risk_area": isHighRisk,
         "total_days_traveling": daysTraveling,
