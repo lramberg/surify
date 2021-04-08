@@ -270,8 +270,12 @@ function Step5({
 function Step6({
   topCarrierName,
   setTopCarrierName,
+  topPremium,
+  setTopPremium,
   secondCarrierName,
   setSecondCarrierName,
+  secondPremium,
+  setSecondPremium,
 }) {
   const classes = useStyles();
 
@@ -422,8 +426,12 @@ function OnboardingSteps({ step, toggleModal, setStep }) {
           <Step6
             topCarrierName={topCarrierName}
             setTopCarrierName={setTopCarrierName}
+            topPremium={topPremium}
+            setTopPremium={setTopPremium}
             secondCarrierName={secondCarrierName}
             setSecondCarrierName={setSecondCarrierName}
+            secondPremium={secondPremium}
+            setSecondPremium={setSecondPremium}
           />
         );
       case 7:
