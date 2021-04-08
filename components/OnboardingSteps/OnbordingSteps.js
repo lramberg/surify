@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
+import axios from "axios";
 
 const useStyles = makeStyles({
   header: {
@@ -362,6 +363,18 @@ function OnboardingSteps({ step, toggleModal, setStep }) {
   const [topPremium, setTopPremium] = useState(null);
   const [secondCarrierName, setSecondCarrierName] = useState(null);
   const [secondPremium, setSecondPremium] = useState(null);
+
+  // {
+  //   backend_value: stateValue
+  // }
+
+  // async function sendApiCall() {
+  //   try {
+  //      await send the axios.put(endpoint, data)
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   function getStepComponent(currentStep) {
     switch (currentStep) {
