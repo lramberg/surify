@@ -374,7 +374,7 @@ function OnboardingSteps({ step, toggleModal, setStep }) {
 
 async function sendApiCall() {
   try {
-      await axios.post('http://localhost:8000/api/brokers/create/', {'broker_name': fullName}).then(function(response) {
+      await axios.post('https://tdwbtw.herokuapp.com/api/brokers/create/', {'broker_name': fullName}).then(function(response) {
         console.log("sendApiCall >  successs ", response)
 
         const brokerSheetId = window.localStorage.setItem('brokerSheetId', response.data.broker_sheet_id)
