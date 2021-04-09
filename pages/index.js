@@ -79,8 +79,8 @@ export default function Home() {
       <NavBar toggleModal={toggleModal} />
       <main className={classes.main}>
         <div>
-          <h1 className={classes.header}>Take the broker out of brokerage.</h1>
-          <h2 className={classes.header}>No Agency Left Behind.</h2>
+          <h1 className={classes.header}>Take the broke out of brokerage.</h1>
+          <h5 className={classes.header}>No Agency Left Behind.</h5>
           <p className={classes.paragraph}>
             Digitize your insurance business instantly with Sureify - backed by powerful tools that help you convert quotes, drive premiums, and manage policies.
           </p>
