@@ -77,6 +77,9 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
   },
+  margin: {
+    marginBottom: 16,
+  },
 });
 
 function Step1({ accountType, setAccountType, accountName, setAccountName }) {
@@ -98,6 +101,8 @@ function Step1({ accountType, setAccountType, accountName, setAccountName }) {
         <Select
           value={accountType}
           onChange={(e) => setAccountType(e.target.value)}
+          className={classes.margin}
+          variant="outlined"
         >
           <MenuItem value="broker">Broker</MenuItem>
           <MenuItem value="agent">Agent</MenuItem>
@@ -106,6 +111,7 @@ function Step1({ accountType, setAccountType, accountName, setAccountName }) {
           placeholder="Name"
           onChange={(e) => setAccountName(e.target.value)}
           value={accountName}
+          variant="outlined"
         />
       </div>
     </>
@@ -138,16 +144,21 @@ function Step2({
           placeholder="Full Name"
           onChange={(e) => setFullName(e.target.value)}
           value={fullName}
+          className={classes.margin}
+          variant="outlined"
         />
         <TextField
           placeholder="Phone Number"
           onChange={(e) => setPhoneNumber(e.target.value)}
           value={phoneNumber}
+          className={classes.margin}
+          variant="outlined"
         />
         <TextField
           placeholder="Email Address"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          variant="outlined"
         />
       </div>
       <h4 className={classes.formTitle}>Brokerage Location</h4>
@@ -156,11 +167,14 @@ function Step2({
           placeholder="Address Line 1"
           onChange={(e) => setAddressLine1(e.target.value)}
           value={addressLine1}
+          className={classes.margin}
+          variant="outlined"
         />
         <TextField
           placeholder="Address Line 2"
           onChange={(e) => setAddressLine2(e.target.value)}
           value={addressLine2}
+          variant="outlined"
         />
       </div>
     </>
@@ -200,7 +214,11 @@ function Step4({ carrier, setCarrier }) {
         Please select the carrier you wish to partner with.
       </p>
       <div className={classes.form}>
-        <Select value={carrier} onChange={(e) => setCarrier(e.target.value)}>
+        <Select
+          variant="outlined"
+          value={carrier}
+          onChange={(e) => setCarrier(e.target.value)}
+        >
           <MenuItem value="chubb">Chubb</MenuItem>
           <MenuItem value="farmers">Farmers</MenuItem>
         </Select>
@@ -234,6 +252,8 @@ function Step5({
           placeholder="FEIN"
           value={FEIN}
           onChange={(e) => setFEIN(e.target.value)}
+          className={classes.margin}
+          variant="outlined"
         />
       </div>
       <p className={classes.formSubtitle}>
@@ -251,6 +271,7 @@ function Step5({
           placeholder="Number of Commerical Producers"
           value={commercialLines}
           onChange={(e) => setCommercialLines(e.target.value)}
+          variant="outlined"
         />
       </div>
       <p className={classes.formSubtitle}>
@@ -261,6 +282,7 @@ function Step5({
           placeholder="Total Commerical Volume"
           value={commercialVolume}
           onChange={(e) => setCommercialVolume(e.target.value)}
+          variant="outlined"
         />
       </div>
     </>
@@ -305,11 +327,14 @@ function Step6({
           placeholder="Carrier Name"
           value={topCarrierName}
           onChange={(e) => setTopCarrierName(e.target.value)}
+          className={classes.margin}
+          variant="outlined"
         />
         <TextField
           placeholder="Total Written Premium"
           value={topPremium}
           onChange={(e) => setTopPremium(e.target.value)}
+          variant="outlined"
         />
       </div>
       <div className={classes.form}>
@@ -317,11 +342,14 @@ function Step6({
           placeholder="Carrier Name"
           value={secondCarrierName}
           onChange={(e) => setSecondCarrierName(e.target.value)}
+          className={classes.margin}
+          variant="outlined"
         />
         <TextField
           placeholder="Total Written Premium"
           value={secondPremium}
           onChange={(e) => setSecondPremium(e.target.value)}
+          variant="outlined"
         />
       </div>
     </>
@@ -372,20 +400,26 @@ function OnboardingSteps({ step, toggleModal, setStep }) {
   //   backend_value: stateValue
   // }
 
-async function sendApiCall() {
-  try {
-      await axios.post('https://tdwbtw.herokuapp.com/api/brokers/create/', {'broker_name': fullName}).then(function(response) {
-        console.log("sendApiCall >  successs ", response)
+  async function sendApiCall() {
+    try {
+      await axios
+        .post("https://tdwbtw.herokuapp.com/api/brokers/create/", {
+          broker_name: fullName,
+        })
+        .then(function (response) {
+          console.log("sendApiCall >  successs ", response);
 
-        const brokerSheetId = window.localStorage.setItem('brokerSheetId', response.data.broker_sheet_id)
-      })
-  } catch (error) {
-    console.log('sendApiCall > error ', error)
+          const brokerSheetId = window.localStorage.setItem(
+            "brokerSheetId",
+            response.data.broker_sheet_id
+          );
+        });
+    } catch (error) {
+      console.log("sendApiCall > error ", error);
+    }
   }
-}
 
-
-function getStepComponent(currentStep) {
+  function getStepComponent(currentStep) {
     switch (currentStep) {
       case 1:
         return (
@@ -449,7 +483,7 @@ function getStepComponent(currentStep) {
   function handleSubmit() {
     toggleModal();
     setTimeout(setStep(1), 300);
-    sendApiCall()
+    sendApiCall();
   }
 
   return <div>{getStepComponent(step)}</div>;
