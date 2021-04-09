@@ -29,6 +29,17 @@ const useStyles = makeStyles({
     fontWeight: 900,
     color: "#0F2042",
     width: 696,
+    margin: 0,
+    marginBottom: 24,
+  },
+  subheader: {
+    fontSize: 36,
+    lineHeight: "45px",
+    fontWeight: 700,
+    color: "#0F2042",
+    width: 696,
+    margin: 0,
+    marginBottom: 24,
   },
   paragraph: {
     fontSize: 18,
@@ -80,9 +91,11 @@ export default function Home() {
       <main className={classes.main}>
         <div>
           <h1 className={classes.header}>Take the broke out of brokerage.</h1>
-          <h5 className={classes.header}>No Agency Left Behind.</h5>
+          <h5 className={classes.subheader}>No Agency Left Behind.</h5>
           <p className={classes.paragraph}>
-            Digitize your insurance business instantly with Sureify - backed by powerful tools that help you convert quotes, drive premiums, and manage policies.
+            Digitize your insurance business instantly with Sureify - backed by
+            powerful tools that help you convert quotes, drive premiums, and
+            manage policies.
           </p>
           <div className={classes.buttonContainer}>
             <div onClick={() => toggleModal()} className={classes.cta}>
