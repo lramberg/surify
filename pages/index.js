@@ -79,11 +79,10 @@ export default function Home() {
       <NavBar toggleModal={toggleModal} />
       <main className={classes.main}>
         <div>
-          <h1 className={classes.header}>Start selling insurance instantly.</h1>
+          <h1 className={classes.header}>Take the broker out of brokerage.</h1>
+          <h2 className={classes.header}>No Agency Left Behind.</h2>
           <p className={classes.paragraph}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            porttitor elit vel lacinia aliquam. Donec commodo, tellus eu
-            faucibus tempus, sapien lectus dapibus turpis
+            Digitize your insurance business instantly with Sureify - backed by powerful tools that help you convert quotes, drive premiums, and manage policies.
           </p>
           <div className={classes.buttonContainer}>
             <div onClick={() => toggleModal()} className={classes.cta}>
